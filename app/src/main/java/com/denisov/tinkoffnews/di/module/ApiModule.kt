@@ -1,6 +1,8 @@
 package com.denisov.tinkoffnews.di.module
 
 import com.denisov.tinkoffnews.data.converter.AdapterFactory
+import com.denisov.tinkoffnews.data.converter.NewsDeserializer
+import com.denisov.tinkoffnews.data.dto.News
 import com.denisov.tinkoffnews.di.scope.PerApplication
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -28,6 +30,7 @@ class ApiModule {
     @PerApplication
     fun provideGson(): Gson = GsonBuilder()
         .registerTypeAdapterFactory(AdapterFactory())
+        .registerTypeAdapter(News::class.java, NewsDeserializer())
         .create()
 
     companion object {

@@ -5,16 +5,9 @@ import com.denisov.tinkoffnews.data.converter.Default
 import com.google.gson.annotations.JsonAdapter
 import java.io.Serializable
 
-data class News(
-    val id: Long,
-    val name: String,
-    val text: String,
-    val publicationDate: PublicationDate
-) : Serializable
-
-data class Response(
+data class Response<T>(
     val resultCode: Result,
-    val payload: List<News>
+    val payload: T
 ) : Serializable
 
 @JsonAdapter(AdapterFactory::class)
@@ -24,5 +17,3 @@ enum class Result {
     @Default
     Unknown
 }
-
-data class PublicationDate(val milliseconds: Long) : Serializable
