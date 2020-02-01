@@ -5,6 +5,7 @@ import com.denisov.tinkoffnews.di.scope.PerActivity
 import com.denisov.tinkoffnews.presentation.ViewModelFactorySingle
 import com.denisov.tinkoffnews.presentation.adapter.ViewHolderFactory
 import com.denisov.tinkoffnews.presentation.adapter.ViewHolderModels
+import com.denisov.tinkoffnews.presentation.adapter.viewholders.ErrorViewHolder
 import com.denisov.tinkoffnews.presentation.adapter.viewholders.LoadingViewHolder
 import com.denisov.tinkoffnews.presentation.adapter.viewholders.NewsViewHolder
 import com.denisov.tinkoffnews.presentation.getViewModel
@@ -39,6 +40,11 @@ class NewsScreenModule {
         @IntoMap
         @IntKey(ViewHolderModels.Loading)
         fun bindsLoadingViewHolder(factory: LoadingViewHolder.Factory): ViewHolderFactory
+
+        @Binds
+        @IntoMap
+        @IntKey(ViewHolderModels.Error)
+        fun bindsErrorViewHolder(factory: ErrorViewHolder.Factory): ViewHolderFactory
 
         @Binds
         fun bindNewListener(viewModel: NewsViewModel): NewsViewHolder.ItemListener

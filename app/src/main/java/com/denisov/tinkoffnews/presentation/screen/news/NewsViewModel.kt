@@ -7,6 +7,7 @@ import com.denisov.tinkoffnews.di.scope.PerActivity
 import com.denisov.tinkoffnews.presentation.BaseViewModel
 import com.denisov.tinkoffnews.presentation.Schedulers
 import com.denisov.tinkoffnews.presentation.adapter.ViewHolderModel
+import com.denisov.tinkoffnews.presentation.adapter.models.ErrorViewHolderModel
 import com.denisov.tinkoffnews.presentation.adapter.models.LoadingViewHolderModel
 import com.denisov.tinkoffnews.presentation.adapter.viewholders.NewsViewHolder
 import com.denisov.tinkoffnews.presentation.adapter.models.NewsViewHolderModel
@@ -49,7 +50,9 @@ class NewsViewModel @Inject constructor(
                 .subscribeOn(schedulers.io)
                 .subscribe({
                     viewHolderModels.postValue(it)
-                }, {})
+                }, {
+                    viewHolderModels.postValue(listOf(ErrorViewHolderModel()))
+                })
         }
     }
 }
