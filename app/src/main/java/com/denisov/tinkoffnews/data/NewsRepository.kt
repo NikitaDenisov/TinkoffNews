@@ -21,6 +21,7 @@ class NewsRepository @Inject constructor(
         api
             .getNews()
             .doOnSuccess { newsDao.deleteAndInsertAll(it) }
+            .map { it.sortedByDescending { it.publicationDate } }
 
     private fun loadNewsLocal() =
         Single

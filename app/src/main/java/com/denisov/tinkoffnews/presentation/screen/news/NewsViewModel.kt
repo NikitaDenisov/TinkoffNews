@@ -40,11 +40,7 @@ class NewsViewModel @Inject constructor(
         subscribe {
             repository
                 .getNews(force)
-                .map { news ->
-                    news
-                        .sortedByDescending { it.publicationDate }
-                        .map { NewsViewHolderModel(it) }
-                }
+                .map { news -> news.map { NewsViewHolderModel(it) } }
                 .doOnSubscribe { viewHolderModels.postValue(listOf(LoadingViewHolderModel())) }
                 .doAfterTerminate { dataLoaded.postValue(Unit) }
                 .subscribeOn(schedulers.io)

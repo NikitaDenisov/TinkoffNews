@@ -9,7 +9,7 @@ import com.denisov.tinkoffnews.data.dto.News
 @Dao
 interface NewsDao {
 
-    @Query("SELECT * FROM news")
+    @Query("SELECT * FROM news ORDER BY publicationDate DESC")
     fun getAll(): List<News>
 
     @Insert
